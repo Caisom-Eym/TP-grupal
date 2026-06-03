@@ -8,7 +8,7 @@
 #include "semaforo.h"
 #include "productor.h"
 #include "numeroAleatorio.h"
-
+//Comentario de github
 Semaforo hay_producto; //Semaforo que marca la cantidad de items en la estanteria
 Semaforo hay_espacio; //Semaforo que dice si hay espacio libre en la cinta transportadora
 Semaforo hay_producto_transportadora; //Semaforo que marca la cantidad de items en la transportadora
