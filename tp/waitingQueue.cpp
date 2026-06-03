@@ -1,0 +1,64 @@
+#include <deque>
+#include <thread>
+#include <mutex>
+#include <chrono>
+
+#include "producto.h"
+#include "waitingQueue.h"
+std::mutex mtxWaiting; //Evita condicion de carrera en la waiting deque
+std::mutex mtxEspera90;
+
+
+std::chrono::steady_clock::time_point cambiarPrioridad = std::chrono::steady_clock::now();
+std::chrono::steady_clock::time_point inserccion = std::chrono::steady_clock::now();
+
+int priorizar = 1;
+
+std::deque<Producto> waiting;
+
+
+
+void guardarProductoWaiting(Producto p){
+    int diferencia;
+    mtxEspera90.lock();
+    do{
+        std::chrono::steady_clock::time_point ahora = std::chrono::steady_clock::now();
+        diferencia = std::chrono::duration_cast<std::chrono::milliseconds>(ahora - inserccion).count();
+
+    }while (diferencia < 90);
+    mtxWaiting.lock();
+    waiting.push_back(p);
+    inserccion = std::chrono::steady_clock::now();
+    mtxWaiting.unlock();
+    mtxEspera90.unlock();
+};
+
+Producto consumirWaiting(){
+    Producto retornar;
+    mtxWaiting.lock();
+    std::chrono::steady_clock::time_point ahora = std::chrono::steady_clock::now();
+    int duracionPrograma = std::chrono::duration_cast<std::chrono::milliseconds>(ahora - cambiarPrioridad).count();
+    if (duracionPrograma == 6000){
+        cambiarPrioridad = std::chrono::steady_clock::now();
+        if (priorizar == 1) priorizar = 0;
+        else priorizar = 1;
+    }
+    if (waiting.size() == 1 || getPrioridad(waiting.front()) == priorizar){
+        retornar = waiting.front();
+        waiting.pop_front();
+    }else if (waiting.size() > 1){
+        int indiceRetornar = 0;
+        for (int i = 0; i < waiting.size(); i++){
+            if (getPrioridad(waiting.at(i)) == priorizar){
+                indiceRetornar = i;
+                break;
+            }
+        }
+        retornar = waiting.at(indiceRetornar);
+        waiting.erase(waiting.begin()+indiceRetornar);
+    }
+
+
+    mtxWaiting.unlock();
+    return retornar;
+}
