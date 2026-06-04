@@ -6,11 +6,9 @@
 #include "producto.h"
 #include "waitingQueue.h"
 std::mutex mtxWaiting; //Evita condicion de carrera en la waiting deque
-std::mutex mtxEspera90;
 
 
 std::chrono::steady_clock::time_point cambiarPrioridad = std::chrono::steady_clock::now();
-std::chrono::steady_clock::time_point inserccion = std::chrono::steady_clock::now();
 
 int priorizar = 1;
 
@@ -19,23 +17,17 @@ std::deque<Producto> waiting;
 
 
 void guardarProductoWaiting(Producto p){
-    int diferencia;
-    mtxEspera90.lock();
-    do{
-        std::chrono::steady_clock::time_point ahora = std::chrono::steady_clock::now();
-        diferencia = std::chrono::duration_cast<std::chrono::milliseconds>(ahora - inserccion).count();
-
-    }while (diferencia < 90);
-    mtxWaiting.lock();
+    std::this_thread::sleep_for(std::chrono::milliseconds(90));
     waiting.push_back(p);
     inserccion = std::chrono::steady_clock::now();
     mtxWaiting.unlock();
-    mtxEspera90.unlock();
+    mtxNuevasPeticiones.unlock();
 };
 
 Producto consumirWaiting(){
     Producto retornar;
     mtxWaiting.lock();
+    //Anti starvation //Cada 6000ms cambia la prioridad
     std::chrono::steady_clock::time_point ahora = std::chrono::steady_clock::now();
     int duracionPrograma = std::chrono::duration_cast<std::chrono::milliseconds>(ahora - cambiarPrioridad).count();
     if (duracionPrograma == 6000){
