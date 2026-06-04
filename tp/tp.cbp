@@ -31,6 +31,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="main.cpp" />
+		<Unit filename="numeroAleatorio.cpp" />
+		<Unit filename="numeroAleatorio.h" />
+		<Unit filename="producto.cpp" />
+		<Unit filename="producto.h" />
+		<Unit filename="productor.cpp" />
+		<Unit filename="productor.h" />
+		<Unit filename="semaforo.cpp" />
+		<Unit filename="semaforo.h" />
+		<Unit filename="waitingQueue.cpp" />
+		<Unit filename="waitingQueue.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
