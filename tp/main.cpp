@@ -25,8 +25,8 @@ int main(){
     const int cantidadProductores = 100;
 
     setCantProductos(100);
-    setCantP0(5);
-    setCantP1(20);
+    setCantP0(0);
+    setCantP1(100);
 
     init(hay_producto,0);
     init(hay_espacio,5);
@@ -48,11 +48,20 @@ int main(){
         sumaTiempoP0 += promedioEsperaProduccion0.at(i);
     }
 
-    int promedio1 = sumaTiempoP1/promedioEsperaProduccion1.size();
-    int promedio0 = sumaTiempoP0/promedioEsperaProduccion0.size();
+    int promedio1 = 0;
+    int promedio0 = 0;
+    if (sumaTiempoP1 != 1){
+        promedio1 = sumaTiempoP1/promedioEsperaProduccion1.size();
+        std::cout << "Promedio de Espera de Produccion de prioridad 1: " << promedio1 << "ms" << std::endl;
+    }else std::cout << "Sin productos de prioridad 1" << std::endl;
+    if (sumaTiempoP0 != 0) {
+        promedio0 = sumaTiempoP0/promedioEsperaProduccion0.size();
+        std::cout << "Promedio de Espera de Produccion de prioridad 0: " << promedio0 << "ms" << std::endl;
+    }else std::cout << "Sin productos de prioridad 0"  << std::endl;
 
-    std::cout << "Promedio de Espera de Produccion de prioridad 1: " << promedio1 << "ms" << std::endl;
-    std::cout << "Promedio de Espera de Produccion de prioridad 0: " << promedio0 << "ms" << std::endl;
+
+
+
 
     std::cout << "Cantidad de paquetes: " << cantProducidos<< std::endl;
 
