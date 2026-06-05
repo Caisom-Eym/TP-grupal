@@ -18,7 +18,7 @@ std::vector<int> promedioEsperaProduccion1; //Tiempo promedio de espera de paque
 std::vector<int> promedioEsperaProduccion0; //Prioridad 0
 
 std::mutex mtxProcessing; //Evita condicion de carrera en la processing queue
-
+std::mutex mtxCout;
 
 int main(){
     std::vector<std::thread> hilosProductores;

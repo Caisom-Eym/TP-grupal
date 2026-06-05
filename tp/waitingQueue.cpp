@@ -2,11 +2,13 @@
 #include <thread>
 #include <mutex>
 #include <chrono>
+#include <iostream>
 
 #include "producto.h"
 #include "waitingQueue.h"
 std::mutex mtxWaiting; //Evita condicion de carrera en la waiting deque
 std::mutex mtxNuevasPeticiones;
+extern std::mutex mtxCout;
 
 
 std::chrono::steady_clock::time_point cambiarPrioridad = std::chrono::steady_clock::now();
@@ -36,6 +38,9 @@ Producto consumirWaiting(){
         cambiarPrioridad = std::chrono::steady_clock::now();
         if (priorizar == 1) priorizar = 0;
         else priorizar = 1;
+        mtxCout.lock();
+        std::cout << "Cambio de prioridad a " << priorizar << std::endl;
+        mtxCout.unlock();
     }
     if (waiting.size() == 1 || getPrioridad(waiting.front()) == priorizar){
         retornar = waiting.front();

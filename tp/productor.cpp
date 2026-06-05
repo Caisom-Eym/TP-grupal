@@ -18,7 +18,6 @@ std::mutex mtxProducidos;
 
 std::mutex mtxEsperaProduccion; //Evita condicion de carrera en la funcion de productor
 extern std::mutex mtxWaiting; //Evita condicion de carrera en la waiting deque
-std::mutex mtxCout;
 
 extern std::vector<int> promedioEsperaProduccion1; //Tiempo promedio de espera de paquetes producidos (discriminados por prioridad)
 extern std::vector<int> promedioEsperaProduccion0; //Prioridad 0
