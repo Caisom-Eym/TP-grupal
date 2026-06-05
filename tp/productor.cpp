@@ -28,7 +28,7 @@ std::chrono::steady_clock::time_point esperaProduccion0 = std::chrono::steady_cl
 
 //Variables globales
 //Obligatorias
-int cantProductos; //Se establece en el main
+extern int cantProductos; //Se establece en el main
 extern int cantProducidos; //Cantidad de productos producidos o por producir
 
 //Solo para determinar cuantos productos de X prioridad queremos

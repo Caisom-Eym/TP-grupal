@@ -14,6 +14,7 @@ Semaforo hay_espacio; //Semaforo que dice si hay espacio libre en la cinta trans
 Semaforo hay_producto_transportadora; //Semaforo que marca la cantidad de items en la transportadora
 
 int cantProducidos = 0; //Cantidad de productos producidos o por producir
+int cantProductos;
 std::vector<int> promedioEsperaProduccion1; //Tiempo promedio de espera de paquetes producidos (discriminados por prioridad)
 std::vector<int> promedioEsperaProduccion0; //Prioridad 0
 
@@ -24,9 +25,9 @@ int main(){
     std::vector<std::thread> hilosProductores;
     const int cantidadProductores = 100;
 
-    setCantProductos(100);
+    cantProductos = 100;
     setCantP0(0);
-    setCantP1(100);
+    setCantP1(0);
 
     init(hay_producto,0);
     init(hay_espacio,5);
