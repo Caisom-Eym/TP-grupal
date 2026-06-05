@@ -15,6 +15,9 @@ std::chrono::steady_clock::time_point cambiarPrioridad = std::chrono::steady_clo
 
 int priorizar = 1;
 
+int contadorPrioridad1Consumido = 0;
+int contadorPrioridad0Consumido = 0;
+
 std::deque<Producto> waiting;
 
 
@@ -57,7 +60,17 @@ Producto consumirWaiting(){
         waiting.erase(waiting.begin()+indiceRetornar);
     }
 
-
+    if (getPrioridad(retornar) == 1){
+        contadorPrioridad1Consumido++;
+        mtxCout.lock();
+        std::cout << "Cantidad de Productos Prioridad -1- removidos de la waitingQueue: " << contadorPrioridad1Consumido << std::endl;
+        mtxCout.unlock();
+    }else{
+        contadorPrioridad0Consumido++;
+        mtxCout.lock();
+        std::cout << "Cantidad de Productos Prioridad -0- removidos de la waitingQueue: " << contadorPrioridad0Consumido << std::endl;
+        mtxCout.unlock();
+    }
     mtxWaiting.unlock();
     return retornar;
 }
