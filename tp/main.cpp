@@ -3,6 +3,7 @@
 #include <queue>
 #include <deque>
 #include <vector>
+#include <chrono>;
 #include "producto.h"
 #include "semaforo.h"
 #include "productor.h"
@@ -13,8 +14,8 @@ Semaforo hay_espacio; //Semaforo que dice si hay espacio libre en la cinta trans
 Semaforo hay_producto_transportadora; //Semaforo que marca la cantidad de items en la transportadora
 
 int cantProducidos = 0; //Cantidad de productos producidos o por producir
-std::vector<std::chrono::steady_clock::time_point> promedioEsperaProduccion1; //Tiempo promedio de espera de paquetes producidos (discriminados por prioridad)
-std::vector<std::chrono::steady_clock::time_point> promedioEsperaProduccion0; //Prioridad 0
+std::vector<int> promedioEsperaProduccion1; //Tiempo promedio de espera de paquetes producidos (discriminados por prioridad)
+std::vector<int> promedioEsperaProduccion0; //Prioridad 0
 
 std::mutex mtxProcessing; //Evita condicion de carrera en la processing queue
 
@@ -36,6 +37,24 @@ int main(){
     }
 
     for (int i = 0; i < cantidadProductores; i++) hilosProductores.at(i).join();
+
+    int sumaTiempoP1 = 0;
+    for (int i = 0; i < promedioEsperaProduccion1.size(); i++){
+        sumaTiempoP1 += promedioEsperaProduccion1.at(i);
+    }
+
+    int sumaTiempoP0 = 0;
+    for (int i = 0; i < promedioEsperaProduccion0.size(); i++){
+        sumaTiempoP0 += promedioEsperaProduccion0.at(i);
+    }
+
+    int promedio1 = sumaTiempoP1/promedioEsperaProduccion1.size();
+    int promedio0 = sumaTiempoP0/promedioEsperaProduccion0.size();
+
+    std::cout << "Promedio de Espera de Produccion de prioridad 1: " << promedio1 << "ms" << std::endl;
+    std::cout << "Promedio de Espera de Produccion de prioridad 0: " << promedio0 << "ms" << std::endl;
+
+    std::cout << "Cantidad de paquetes: " << cantProducidos<< std::endl;
 
     return 0;
 }

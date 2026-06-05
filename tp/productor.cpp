@@ -20,8 +20,8 @@ std::mutex mtxEsperaProduccion; //Evita condicion de carrera en la funcion de pr
 extern std::mutex mtxWaiting; //Evita condicion de carrera en la waiting deque
 std::mutex mtxCout;
 
-extern std::vector<std::chrono::steady_clock::time_point> promedioEsperaProduccion1; //Tiempo promedio de espera de paquetes producidos (discriminados por prioridad)
-extern std::vector<std::chrono::steady_clock::time_point> promedioEsperaProduccion0; //Prioridad 0
+extern std::vector<int> promedioEsperaProduccion1; //Tiempo promedio de espera de paquetes producidos (discriminados por prioridad)
+extern std::vector<int> promedioEsperaProduccion0; //Prioridad 0
 
 std::chrono::steady_clock::time_point esperaProduccion1 = std::chrono::steady_clock::now();
 std::chrono::steady_clock::time_point esperaProduccion0 = std::chrono::steady_clock::now();
@@ -71,16 +71,16 @@ void productor(){
 
         guardarProductoWaiting(nuevoProducto);
 
-        std::chrono::steady_clock::time_point auxEspera;
+        std::chrono::steady_clock::time_point auxEspera = std::chrono::steady_clock::now();;
         mtxEsperaProduccion.lock();
         if (getPrioridad(nuevoProducto) == 1){
-            auxEspera = esperaProduccion1;
+            int promedio = std::chrono::duration_cast<std::chrono::milliseconds>(auxEspera - esperaProduccion1).count();
             esperaProduccion1 = std::chrono::steady_clock::now();
-            promedioEsperaProduccion1.push_back(auxEspera);
+            promedioEsperaProduccion1.push_back(promedio);
         }else{
-            auxEspera = esperaProduccion0;
+            int promedio = std::chrono::duration_cast<std::chrono::milliseconds>(auxEspera - esperaProduccion0).count();
             esperaProduccion0 = std::chrono::steady_clock::now();
-            promedioEsperaProduccion0.push_back(auxEspera);
+            promedioEsperaProduccion0.push_back(promedio);
         }
         mtxEsperaProduccion.unlock();
 
