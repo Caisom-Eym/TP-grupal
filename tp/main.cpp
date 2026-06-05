@@ -13,6 +13,7 @@ Semaforo hay_producto; //Semaforo que marca la cantidad de items en la estanteri
 Semaforo hay_espacio; //Semaforo que dice si hay espacio libre en la cinta transportadora
 Semaforo hay_producto_transportadora; //Semaforo que marca la cantidad de items en la transportadora
 
+int cantProducidos = 0; //Cantidad de productos producidos o por producir
 std::mutex mtxProcessing; //Evita condicion de carrera en la processing queue
 
 

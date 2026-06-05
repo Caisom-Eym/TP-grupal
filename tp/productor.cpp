@@ -22,7 +22,7 @@ std::mutex mtxCout;
 //Variables globales
 //Obligatorias
 int cantProductos; //Se establece en el main
-int cantProducidos = 0; //Cantidad de productos producidos o por producir
+extern int cantProducidos; //Cantidad de productos producidos o por producir
 
 //Solo para determinar cuantos productos de X prioridad queremos
 int cantP1 = -1; //-1 aleatorio. Cantidad de productos de prioridad 1
