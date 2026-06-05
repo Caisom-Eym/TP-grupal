@@ -6,8 +6,9 @@
 
 #include <iostream>
 #include <deque>
+#include <vector>
 #include <mutex>
-#include <ctime>
+#include <chrono>
 #include <thread>
 
 extern Semaforo hay_espacio;
@@ -15,9 +16,16 @@ extern Semaforo hay_producto;
 
 std::mutex mtxProducidos;
 
-std::mutex mtxGuardarWaiting; //Evita condicion de carrera en la funcion de productor
+std::mutex mtxEsperaProduccion; //Evita condicion de carrera en la funcion de productor
 extern std::mutex mtxWaiting; //Evita condicion de carrera en la waiting deque
 std::mutex mtxCout;
+
+extern std::vector<std::chrono::steady_clock::time_point> promedioEsperaProduccion1; //Tiempo promedio de espera de paquetes producidos (discriminados por prioridad)
+extern std::vector<std::chrono::steady_clock::time_point> promedioEsperaProduccion0; //Prioridad 0
+
+std::chrono::steady_clock::time_point esperaProduccion1 = std::chrono::steady_clock::now();
+std::chrono::steady_clock::time_point esperaProduccion0 = std::chrono::steady_clock::now();
+
 
 //Variables globales
 //Obligatorias
@@ -60,12 +68,21 @@ void productor(){
         cantProducidos++;
         mtxProducidos.unlock();
 
-        mtxGuardarWaiting.lock();
 
         guardarProductoWaiting(nuevoProducto);
 
-        std::cout << nuevoProducto.prioridad << std::endl;
-        mtxGuardarWaiting.unlock();
+        std::chrono::steady_clock::time_point auxEspera;
+        mtxEsperaProduccion.lock();
+        if (getPrioridad(nuevoProducto) == 1){
+            auxEspera = esperaProduccion1;
+            esperaProduccion1 = std::chrono::steady_clock::now();
+            promedioEsperaProduccion1.push_back(auxEspera);
+        }else{
+            auxEspera = esperaProduccion0;
+            esperaProduccion0 = std::chrono::steady_clock::now();
+            promedioEsperaProduccion0.push_back(auxEspera);
+        }
+        mtxEsperaProduccion.unlock();
 
         signal(hay_producto);
         mtxProducidos.lock();

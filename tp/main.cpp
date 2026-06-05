@@ -3,7 +3,6 @@
 #include <queue>
 #include <deque>
 #include <vector>
-#include <ctime>
 #include "producto.h"
 #include "semaforo.h"
 #include "productor.h"
@@ -14,6 +13,9 @@ Semaforo hay_espacio; //Semaforo que dice si hay espacio libre en la cinta trans
 Semaforo hay_producto_transportadora; //Semaforo que marca la cantidad de items en la transportadora
 
 int cantProducidos = 0; //Cantidad de productos producidos o por producir
+std::vector<std::chrono::steady_clock::time_point> promedioEsperaProduccion1; //Tiempo promedio de espera de paquetes producidos (discriminados por prioridad)
+std::vector<std::chrono::steady_clock::time_point> promedioEsperaProduccion0; //Prioridad 0
+
 std::mutex mtxProcessing; //Evita condicion de carrera en la processing queue
 
 

@@ -6,6 +6,7 @@
 #include "producto.h"
 #include "waitingQueue.h"
 std::mutex mtxWaiting; //Evita condicion de carrera en la waiting deque
+std::mutex mtxNuevasPeticiones;
 
 
 std::chrono::steady_clock::time_point cambiarPrioridad = std::chrono::steady_clock::now();
@@ -17,9 +18,10 @@ std::deque<Producto> waiting;
 
 
 void guardarProductoWaiting(Producto p){
+    mtxNuevasPeticiones.lock();
     std::this_thread::sleep_for(std::chrono::milliseconds(90));
+    mtxWaiting.lock();
     waiting.push_back(p);
-    inserccion = std::chrono::steady_clock::now();
     mtxWaiting.unlock();
     mtxNuevasPeticiones.unlock();
 };
