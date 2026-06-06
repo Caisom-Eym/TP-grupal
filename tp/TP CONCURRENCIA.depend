@@ -1,0 +1,346 @@
+# depslib dependency file v1.0
+1780762000 source:c:\users\tt\downloads\tp concurrencia\numeroaleatorio.cpp
+	<random>
+	"numeroAleatorio.h"
+
+1780779149 c:\users\tt\downloads\tp concurrencia\numeroaleatorio.h
+
+1780709796 source:c:\users\tt\downloads\tp concurrencia\semaforo.cpp
+	"semaforo.h"
+	<mutex>
+	<condition_variable>
+
+1780707515 c:\users\tt\downloads\tp concurrencia\semaforo.h
+	<mutex>
+	<condition_variable>
+
+1780762087 source:c:\users\tt\downloads\tp concurrencia\main.cpp
+	<iostream>
+	<thread>
+	<queue>
+	<deque>
+	<vector>
+	<chrono>
+	"producto.h"
+	"semaforo.h"
+	"productor.h"
+	"numeroAleatorio.h"
+	"consumidor.h"
+	"processingQueue.h"
+
+1780757380 c:\users\tt\downloads\tp concurrencia\producto.h
+	<ctime>
+	<string>
+	<chrono>
+
+1780751727 c:\users\tt\downloads\tp concurrencia\productor.h
+	"producto.h"
+
+1780758055 source:c:\users\tt\downloads\tp concurrencia\producto.cpp
+	<ctime>
+	<chrono>
+	<iostream>
+	"producto.h"
+	<string>
+
+1780762127 source:c:\users\tt\downloads\tp concurrencia\productor.cpp
+	"productor.h"
+	"producto.h"
+	"semaforo.h"
+	"numeroAleatorio.h"
+	"waitingQueue.h"
+	<iostream>
+	<deque>
+	<vector>
+	<mutex>
+	<chrono>
+	<thread>
+
+1780709948 c:\users\tt\downloads\tp concurrencia\waitingqueue.h
+	<deque>
+	"producto.h"
+
+1780757636 source:c:\users\tt\downloads\tp concurrencia\consumidor.cpp
+	"consumidor.h"
+	"waitingQueue.h"
+	"processingQueue.h"
+	"semaforo.h"
+	"producto.h"
+	<thread>
+	<chrono>
+	<iostream>
+	<vector>
+
+1780747294 source:c:\users\tt\downloads\tp concurrencia\processingqueue.cpp
+	"processingQueue.h"
+	<deque>
+	<mutex>
+	<chrono>
+	"producto.h"
+	"semaforo.h"
+	<thread>
+
+1780746034 source:c:\users\tt\downloads\tp concurrencia\waitingqueue.cpp
+	<deque>
+	<thread>
+	<mutex>
+	<chrono>
+	"producto.h"
+	"waitingQueue.h"
+
+1780748614 c:\users\tt\downloads\tp concurrencia\processingqueue.h
+	<deque>
+	<mutex>
+	"producto.h"
+	"semaforo.h"
+
+1780742681 c:\users\tt\downloads\tp concurrencia\consumidor.h
+
+1780744473 source:c:\users\tt\downloads\tp concurrencia\productor.h
+	"producto.h"
+
+1780742681 source:c:\users\tt\downloads\tp concurrencia\consumidor.h
+
+1780744304 source:c:\users\tt\downloads\tp concurrencia\numeroaleatorio.h
+
+1780748614 source:c:\users\tt\downloads\tp concurrencia\processingqueue.h
+	<deque>
+	<mutex>
+	"producto.h"
+	"semaforo.h"
+
+1780750995 source:c:\users\tt\downloads\tp concurrencia\producto.h
+	<ctime>
+	<string>
+	<chrono>
+
+1780707515 source:c:\users\tt\downloads\tp concurrencia\semaforo.h
+	<mutex>
+	<condition_variable>
+
+1780709948 source:c:\users\tt\downloads\tp concurrencia\waitingqueue.h
+	<deque>
+	"producto.h"
+
+1780785562 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\consumidor.cpp
+	"consumidor.h"
+	"waitingQueue.h"
+	"processingQueue.h"
+	"semaforo.h"
+	"producto.h"
+	<thread>
+	<chrono>
+	<iostream>
+	<vector>
+
+1780742681 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\consumidor.h
+
+1780709948 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\waitingqueue.h
+	<deque>
+	"producto.h"
+
+1780782235 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\producto.h
+	<ctime>
+	<string>
+	<chrono>
+
+1780748614 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\processingqueue.h
+	<deque>
+	<mutex>
+	"producto.h"
+	"semaforo.h"
+
+1780707515 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\semaforo.h
+	<mutex>
+	<condition_variable>
+
+1780785687 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\numeroaleatorio.cpp
+	<random>
+	"numeroAleatorio.h"
+
+1780785612 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\numeroaleatorio.h
+
+1780782989 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\processingqueue.cpp
+	"processingQueue.h"
+	<deque>
+	<mutex>
+	<chrono>
+	"producto.h"
+	"semaforo.h"
+	<thread>
+
+1780785543 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\producto.cpp
+	<ctime>
+	<chrono>
+	<iostream>
+	"producto.h"
+	<string>
+
+1780786631 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\productor.cpp
+	"productor.h"
+	"producto.h"
+	"semaforo.h"
+	"numeroAleatorio.h"
+	"waitingQueue.h"
+	<iostream>
+	<deque>
+	<vector>
+	<mutex>
+	<chrono>
+	<thread>
+
+1780751727 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\productor.h
+	"producto.h"
+
+1780709796 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\semaforo.cpp
+	"semaforo.h"
+	<mutex>
+	<condition_variable>
+
+1780785500 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\waitingqueue.cpp
+	<deque>
+	<thread>
+	<mutex>
+	<chrono>
+	"producto.h"
+	"waitingQueue.h"
+
+1780785476 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\main.cpp
+	<iostream>
+	<thread>
+	<queue>
+	<deque>
+	<vector>
+	<chrono>
+	"worker.h"
+	"producto.h"
+	"semaforo.h"
+	"productor.h"
+	"numeroAleatorio.h"
+	"consumidor.h"
+	"processingQueue.h"
+
+1780782659 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\worker.cpp
+	"worker.h"
+	<deque>
+	<mutex>
+	<chrono>
+	<thread>
+	<iostream>
+	"processingQueue.h"
+	"producto.h"
+	"semaforo.h"
+
+1780781526 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp concurrencia\worker.h
+
+1780785562 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\consumidor.cpp
+	"consumidor.h"
+	"waitingQueue.h"
+	"processingQueue.h"
+	"semaforo.h"
+	"producto.h"
+	<thread>
+	<chrono>
+	<iostream>
+	<vector>
+
+1780742681 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\consumidor.h
+
+1780709948 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\waitingqueue.h
+	<deque>
+	"producto.h"
+
+1780782235 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\producto.h
+	<ctime>
+	<string>
+	<chrono>
+
+1780748614 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\processingqueue.h
+	<deque>
+	<mutex>
+	"producto.h"
+	"semaforo.h"
+
+1780707515 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\semaforo.h
+	<mutex>
+	<condition_variable>
+
+1780785476 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\main.cpp
+	<iostream>
+	<thread>
+	<queue>
+	<deque>
+	<vector>
+	<chrono>
+	"worker.h"
+	"producto.h"
+	"semaforo.h"
+	"productor.h"
+	"numeroAleatorio.h"
+	"consumidor.h"
+	"processingQueue.h"
+
+1780781526 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\worker.h
+
+1780751727 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\productor.h
+	"producto.h"
+
+1780785612 c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\numeroaleatorio.h
+
+1780785687 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\numeroaleatorio.cpp
+	<random>
+	"numeroAleatorio.h"
+
+1780782989 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\processingqueue.cpp
+	"processingQueue.h"
+	<deque>
+	<mutex>
+	<chrono>
+	"producto.h"
+	"semaforo.h"
+	<thread>
+
+1780785543 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\producto.cpp
+	<ctime>
+	<chrono>
+	<iostream>
+	"producto.h"
+	<string>
+
+1780786631 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\productor.cpp
+	"productor.h"
+	"producto.h"
+	"semaforo.h"
+	"numeroAleatorio.h"
+	"waitingQueue.h"
+	<iostream>
+	<deque>
+	<vector>
+	<mutex>
+	<chrono>
+	<thread>
+
+1780709796 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\semaforo.cpp
+	"semaforo.h"
+	<mutex>
+	<condition_variable>
+
+1780785500 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\waitingqueue.cpp
+	<deque>
+	<thread>
+	<mutex>
+	<chrono>
+	"producto.h"
+	"waitingQueue.h"
+
+1780782659 source:c:\users\exo\documents\codeblocks\programacion concurrente\trabajo práctico\tp grupal\tp\worker.cpp
+	"worker.h"
+	<deque>
+	<mutex>
+	<chrono>
+	<thread>
+	<iostream>
+	"processingQueue.h"
+	"producto.h"
+	"semaforo.h"
+

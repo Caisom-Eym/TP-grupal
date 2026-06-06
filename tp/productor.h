@@ -1,9 +1,9 @@
-#ifndef PRODUCTOR.H
-#define PRODUCTOR.H
+#ifndef PRODUCTOR_H_INCLUDED
+#define PRODUCTOR_H_INCLUDED
 
 #include "producto.h"
 
-void productor();
+void productor(int id);
 void mostrar();
 
 
@@ -15,6 +15,4 @@ void setCantProductos(int nuevaCant);
 void setCantP1(int nuevaCant);
 void setCantP0(int nuevaCant);
 
-#endif // PRODUCTOR
-
-
+#endif // PRODUCTOR_H_INCLUDED

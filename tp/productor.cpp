@@ -17,7 +17,7 @@ extern Semaforo hay_producto;
 std::mutex mtxProducidos;
 
 std::mutex mtxEsperaProduccion; //Evita condicion de carrera en la funcion de productor
-extern std::mutex mtxWaiting; //Evita condicion de carrera en la waiting deque
+extern std::mutex mtx_consola;
 
 extern std::vector<int> promedioEsperaProduccion1; //Tiempo promedio de espera de paquetes producidos (discriminados por prioridad)
 extern std::vector<int> promedioEsperaProduccion0; //Prioridad 0
@@ -32,74 +32,73 @@ extern int cantProductos; //Se establece en el main
 extern int cantProducidos; //Cantidad de productos producidos o por producir
 
 //Solo para determinar cuantos productos de X prioridad queremos
-int cantP1 = -1; //-1 aleatorio. Cantidad de productos de prioridad 1
-int cantP0 = -1; //-1 aleatorio. Cantidad de productos de prioridad 0
+extern int cantP1; // Cantidad de productos de prioridad 1
+extern int cantP0; // Cantidad de productos de prioridad 0
 int cantP1Producidos = 0; //Cantidad de productos de prioridad 1 producidos o por producir
 int cantP0Producidos = 0; //Cantidad de productos de prioridad 0 producidos o por producir
 
 
-void productor(){
+void productor(int id){
     mtxProducidos.lock();
     while (cantProducidos < cantProductos){
+
         Producto nuevoProducto;
 
         //Logica para la creacion de productos de una prioridad determinada
         int aleatorizarCreacionPrioridad;
+
         if (cantP1Producidos < cantP1 && cantP0Producidos < cantP0){
-            aleatorizarCreacionPrioridad = aleatorio(0,5);
+            aleatorizarCreacionPrioridad = aleatorioVersion2(0,5);
+
             if (aleatorizarCreacionPrioridad >= 1) {
                 cantP1Producidos++;
                 nuevoProducto = crearProducto(cantProducidos, 1);
+
             }else if (aleatorizarCreacionPrioridad == 0){
                 nuevoProducto = crearProducto(cantProducidos, 0);
                 cantP0Producidos++;
             }
+
         }else if (cantP1 > 0 && cantP1Producidos < cantP1) {
             cantP1Producidos++;
             nuevoProducto = crearProducto(cantProducidos, 1);
+
         }else if (cantP0 > 0 && cantP0Producidos < cantP0){
             nuevoProducto = crearProducto(cantProducidos, 0);
             cantP0Producidos++;
-        }else nuevoProducto = crearProducto(cantProducidos, aleatorio(0,1));
+
+        }else nuevoProducto = crearProducto(cantProducidos, aleatorioVersion2(0,1));
         //Fin de la logica
         //nuevoProducto = crearProducto(cantProducidos, aleatorio(0,1));
 
         cantProducidos++;
         mtxProducidos.unlock();
 
-
         guardarProductoWaiting(nuevoProducto);
 
+        mtx_consola.lock();
+        std::cout << "Productor [" << id << "] puso paquete ID: " << nuevoProducto.id << " en estanteria (Total: " << cantProducidos << ")" << std::endl;
+        mtx_consola.unlock();
+        /*
         std::chrono::steady_clock::time_point auxEspera = std::chrono::steady_clock::now();;
         mtxEsperaProduccion.lock();
+
         if (getPrioridad(nuevoProducto) == 1){
             int promedio = std::chrono::duration_cast<std::chrono::milliseconds>(auxEspera - esperaProduccion1).count();
             esperaProduccion1 = std::chrono::steady_clock::now();
             promedioEsperaProduccion1.push_back(promedio);
+
         }else{
-            int promedio = std::chrono::duration_cast<std::chrono::milliseconds>(auxEspera - esperaProduccion0).count();
+            ///int promedio = std::chrono::duration_cast<std::chrono::milliseconds>(auxEspera - esperaProduccion0).count(); calcula tiempo que pasa entre q se crea un paquete y otro
             esperaProduccion0 = std::chrono::steady_clock::now();
             promedioEsperaProduccion0.push_back(promedio);
         }
-        mtxEsperaProduccion.unlock();
+
+        mtxEsperaProduccion.unlock();*/
 
         signal(hay_producto);
         mtxProducidos.lock();
     }
     mtxProducidos.unlock();
+
 }
-void mostrar();
-
-
-//Determinar cantidad de productos creados
-//Determinar cuantos productos de X prioridad crear
-
-void setCantProductos(int nuevaCant){
-    cantProductos = nuevaCant;
-};
-void setCantP1(int nuevaCant){
-    cantP1 = nuevaCant;
-};
-void setCantP0(int nuevaCant){
-    cantP0 = nuevaCant;
-};

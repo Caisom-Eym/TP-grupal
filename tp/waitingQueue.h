@@ -1,5 +1,5 @@
-#ifndef WAITINGQUEUE.H
-#define WAITINGQUEUE.H
+#ifndef WAITINGQUEUE_H_INCLUDED
+#define WAITINGQUEUE_H_INCLUDED
 
 #include <deque>
 
@@ -9,4 +9,4 @@ void guardarProductoWaiting(Producto p);
 
 Producto consumirWaiting();
 
-#endif // WAITINGQUEUE
+#endif // WAITINGQUEUE_H_INCLUDED
