@@ -37,7 +37,7 @@ Producto consumirWaiting(){
     //Anti starvation //Cada 6000ms cambia la prioridad
     std::chrono::steady_clock::time_point ahora = std::chrono::steady_clock::now();
     int duracionPrograma = std::chrono::duration_cast<std::chrono::milliseconds>(ahora - cambiarPrioridad).count();
-    if (duracionPrograma == 6000){
+    if (duracionPrograma >= 6000){
         cambiarPrioridad = std::chrono::steady_clock::now();
         if (priorizar == 1) priorizar = 0;
         else priorizar = 1;

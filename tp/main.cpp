@@ -51,7 +51,7 @@ int main(){
 
     int promedio1 = 0;
     int promedio0 = 0;
-    if (sumaTiempoP1 != 1){
+    if (sumaTiempoP1 != 0){
         promedio1 = sumaTiempoP1/promedioEsperaProduccion1.size();
         std::cout << "Promedio de Espera de Produccion de prioridad 1: " << promedio1 << "ms" << std::endl;
     }else std::cout << "Sin productos de prioridad 1" << std::endl;
