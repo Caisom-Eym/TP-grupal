@@ -93,9 +93,6 @@ void mostrar();
 
 //Determinar cantidad de productos creados
 //Determinar cuantos productos de X prioridad crear
-int getCantProductos(){
-    return cantProductos;
-};
 
 void setCantProductos(int nuevaCant){
     cantProductos = nuevaCant;
